@@ -1,5 +1,5 @@
 # ─── Build Stage ───────────────────────────────────────
-FROM node:22-alpine AS builder
+FROM node:26-alpine AS builder
 
 # Native build tools for better-sqlite3 (compiles from source on Alpine/musl)
 RUN apk add --no-cache python3 make g++
@@ -28,7 +28,7 @@ ENV DATABASE_PATH=/tmp/build-dummy.db
 RUN npx next build
 
 # ─── Runner Stage ──────────────────────────────────────
-FROM node:22-alpine AS runner
+FROM node:26-alpine AS runner
 
 WORKDIR /app
 
